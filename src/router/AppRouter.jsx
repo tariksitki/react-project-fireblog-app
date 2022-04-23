@@ -1,5 +1,6 @@
 
 import { BrowserRouter, BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import Navbar from "../components/navbar/Navbar";
 import About from "../pages/about/About";
 import Dashboard from "../pages/dashboard/Dashboard"
 import Details from "../pages/details/Details";
@@ -11,7 +12,8 @@ import UpdateBlog from "../pages/update/UpdateBlog";
 
 const AppRouter = () => {
   return (
-    <BrowserRouter>
+    <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element = {<Dashboard />} />
         <Route path="/about" element = {<About />} />
@@ -22,7 +24,7 @@ const AppRouter = () => {
         <Route path="/register" element = {<Register />} />
         <Route path="/updateBlog" element = {<UpdateBlog />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   )
 };
 
