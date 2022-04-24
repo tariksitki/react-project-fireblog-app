@@ -4,15 +4,13 @@ import LoginPassword from "./LoginPassword";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { useState } from "react";
-import { signUpProvider } from "../../helpers/firebase";
+import { signUpProvider, signIn } from "../../helpers/firebase";
 
-const Register = () => {
+const Login = () => {
   const [loginState, setLoginState] = useState({
     email : "",
     password : ""
   });
-
-  console.log(loginState)
 
   return (
     <main className="main">
@@ -36,7 +34,7 @@ const Register = () => {
 
           <div>
             <Stack spacing={2} direction="row">
-                <Button variant="contained">LOG IN</Button>
+                <Button variant="contained" onClick= {() => signIn(loginState)} >LOG IN</Button>
             </Stack>
           </div>
 
@@ -50,4 +48,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

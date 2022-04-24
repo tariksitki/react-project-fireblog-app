@@ -17,6 +17,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link} from 'react-router-dom';
+import { logOut } from '../../helpers/firebase';
 
 // const Search = styled('div')(({ theme }) => ({
 //   position: 'relative',
@@ -101,9 +102,10 @@ export default function Navbar() {
       onClose={handleMenuClose}
     >
       <Link to = "/profile" >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       </Link>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={() => logOut()} > LogOut </MenuItem>
     </Menu>
   );
 

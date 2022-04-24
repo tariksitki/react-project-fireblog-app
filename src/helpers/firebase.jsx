@@ -1,7 +1,7 @@
 
 
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 
 // const firebaseConfig = {
@@ -25,9 +25,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth();
+const firebase = initializeApp(firebaseConfig);
+export default firebase;
+export const auth = getAuth();
 
 
     // signUp:
@@ -52,7 +52,7 @@ export const signUp = async ({email, password}, displayName) => {
 ///////////  sign in:
 
 
-const signIn = async ({email, password}) => {
+export const signIn = async ({email, password}) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
@@ -60,6 +60,20 @@ const signIn = async ({email, password}) => {
   }
 };
 
+
+
+
+/////// signout:
+// signout islemini navbar da logout butonuna ekliyoruz
+export const logOut = async (navigate) => {
+  try {
+    signOut(auth);
+    alert("Logout Succesfully");
+    // navigate("/")
+  } catch (error) {
+    alert(error);
+  }
+};
 
 
 
