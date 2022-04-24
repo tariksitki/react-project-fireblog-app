@@ -1,10 +1,18 @@
-
-import React from 'react'
+import { useSelector } from "react-redux";
+import BlogCard from "../../components/blogCard/BlogCard";
 
 const Dashboard = () => {
+  const [ state ] = useSelector((state) => state.blog);
+
   return (
-    <div>Dashboard</div>
+    <div style={{display : "flex"}} >
+      {state?.map(blog => {
+        return (
+          <BlogCard state = {state} />
+        )
+      })}
+    </div>
   )
 }
 
-export default Dashboard
+export default Dashboard;
