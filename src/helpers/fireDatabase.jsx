@@ -16,7 +16,7 @@ import {setBlog} from "../redux/actions/BlogActions";
 
 /// Writing a new Data to Database:
 
-export const addUser = function ({title, url, content}, date) {
+export const addUser = function ({title, url, content, userEmail, userName, date}) {
   const db = getDatabase();
   const userRef = ref(db, "database");
   const newUserRef = push(userRef);
@@ -24,7 +24,9 @@ export const addUser = function ({title, url, content}, date) {
     title: title,
     url: url,
     content: content,
-    blogDate : date
+    blogDate : date,
+    userEmail : userEmail,
+    userName : userName
   });
 };
 

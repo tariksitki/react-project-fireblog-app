@@ -1,21 +1,33 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-
+import { useSelector } from "react-redux";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { addUser } from "../../helpers/fireDatabase";
+
 
 const NewBlog = () => {
   const [info, setInfo] = useState({
     title: "",
     url: "",
-    content: ""
+    content: "",
+    userEmail : "",
+    userName : "",
+    date : ""
   });
 
-  const handleInfo = () => {
+  const {currentUser} = useSelector(state => state.auth);
+  const {email, displayName} = currentUser;
+
+  useEffect(() => {
     const date = new Date().toLocaleDateString();
-    addUser(info, date);
+    setInfo({...info, userEmail : email, userName : displayName, date : date})
+  }, [currentUser]);
+
+
+  const handleInfo = () => {
+    addUser(info);
   };
 
   return (

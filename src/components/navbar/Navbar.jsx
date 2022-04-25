@@ -180,7 +180,7 @@ export default function Navbar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            FIREBLOG
+            BLOGGER
           </Typography>
           {/* <Search>
             <SearchIconWrapper>
