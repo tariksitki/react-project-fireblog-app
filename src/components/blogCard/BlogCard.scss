@@ -1,0 +1,86 @@
+@import "../../scss/variables";
+
+.card-main {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+
+    .image-container {
+        
+        .card-image {
+            width: 26rem;
+            height: 14rem;
+        }
+    }
+    .info-section {
+        width: 50%;
+        .date-div, .title-div, .content-div {
+            
+        }
+        .date-div {
+            display: flex;
+            justify-content: space-between;
+            p {
+                font-size: 0.9rem;
+            }
+            .user-icon {
+                background-color: $colorThree;
+                padding: 0.5rem;
+                border-radius: 47%;
+            }
+        }
+        .title-div {
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+        .content-div  {
+            margin-top: 0.6rem;
+            height: 5rem;
+            
+
+            
+            p {
+                font-size: 1rem;
+                line-height: 1.6rem;
+                width: 100%;
+                display: inline;
+                display: inline-block;
+                word-break: break-word; 
+                text-align: justify;
+                // table-layout:fixed;
+            }
+        }
+        .info-section-down {
+            display: flex;
+            flex-direction: column;
+            margin-top: 0.9rem;
+
+            .user-info-div {
+                div {
+                    display: inline-block;
+                    .span-email {
+                        margin-left: 1rem;
+                    }
+                }
+            }
+
+            .icons-div {
+                display: flex;
+                // justify-content: end;
+                margin-top: 0.4rem;
+                
+                .icons-div-inner {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 35%;
+                    margin-top: 0.3rem;
+                    .info-icon {
+                        font-size: 1.3rem;
+                    }
+                }
+            }
+        }
+    }
+}

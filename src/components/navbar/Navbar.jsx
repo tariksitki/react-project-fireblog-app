@@ -18,6 +18,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link} from 'react-router-dom';
 import { logOut } from '../../helpers/firebase';
+import "./Navbar.scss";
 
 // const Search = styled('div')(({ theme }) => ({
 //   position: 'relative',
@@ -162,9 +163,9 @@ export default function Navbar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
+    <Box sx={{ flexGrow: 1 }} >
+      <AppBar position="static" >
+        <Toolbar className = "navbar">
           <IconButton
             size="large"
             edge="start"
@@ -175,7 +176,9 @@ export default function Navbar() {
             <MenuIcon />
           </IconButton>
           <Typography
-            variant="h6"
+          className='navbar-logo'
+            style={{fontWeight : "600", fontSize : "1.8rem"}}
+            variant="h5"
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}

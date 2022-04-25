@@ -109,58 +109,76 @@
 //   );
 // }
 
+import "./BlogCard.scss";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
-import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
-
-const BlogCard = () => {
+const BlogCard = ({blog}) => {
+  const {blogDate, title, id, content, url, userName, userEmail} = blog;
   return (
     <main className="card-main">
       <section className="image-container">
-        <img src="" alt="blog-image" />
+        <img
+          className="card-image"
+          src={url}
+          alt="blog-image"
+        />
       </section>
 
       <section className="info-section">
         <div className="date-div">
-          <p>Date</p>
+          <p>{blogDate}</p>
+          <span className="user-icon"> {userName[0].toUpperCase()} </span>
         </div>
 
         <div className="title-div">
-          <h3>Title</h3>
+          <h3>{title.slice(0, 35)} </h3>
         </div>
 
         <div className="content-div">
-          <p>Content Summary</p>
+          <p>{content.slice(0, 180)}... </p>
         </div>
 
-        <div className='info-section-down' >
-          <div>
-            <p>R</p>
+        <div className="info-section-down">
+          <div className="user-info-div">
+            <div>
+              <span>From</span>
+              <span className="span-email" > {userEmail} </span>
+            </div>
+            {/* <span className="user-icon">R</span> */}
           </div>
 
-          <div>
-            <p>tariksitki@gmail.com</p>
-          </div>
+          <div className="icons-div">
+            <div className="icons-div-inner" >
+              <div>
+                <FavoriteBorderIcon className="info-icon" />
+                {/* <FavoriteIcon /> */}
+              </div>
 
-          <div className='icons-div' >
-            <FavoriteBorderIcon />
-            {/* <FavoriteIcon /> */}
-            <ChatBubbleOutlineIcon />
-            {/* <ChatBubbleIcon /> */}
-            <VisibilityOutlinedIcon />
-            <BookmarkBorderOutlinedIcon />
-          </div>
+              <div>
+                <ChatBubbleOutlineIcon className="info-icon"/>
+                {/* <ChatBubbleIcon /> */}
+              </div>
 
+              <div>
+                <VisibilityOutlinedIcon  className="info-icon"/>
+              </div>
+
+              <div>
+                <BookmarkBorderOutlinedIcon className="info-icon" />
+              </div>
+
+            </div>
+          </div>
         </div>
-
       </section>
     </main>
-  )
-}
+  );
+};
 
 export default BlogCard;

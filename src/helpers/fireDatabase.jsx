@@ -40,7 +40,7 @@ export const addUser = function ({title, url, content, userEmail, userName, date
 export const CallUser = () => {
     // const [isLoading, setIsLoading] = useState();
     const [blogList, setBlogList] = useState();
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     useEffect(() => {
         // setIsLoading(true);

@@ -26,7 +26,7 @@ const Register = () => {
   };
 
   return (
-    <main className="main">
+    <main className="register-main">
           <Box
             className="form" onSubmit={handleRegister}
             component="form"
