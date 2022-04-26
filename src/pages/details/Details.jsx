@@ -13,10 +13,20 @@ import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 const Details = () => {
   const { id } = useParams();
   const [state] = useSelector((state) => state.blog);
+  const { currentUser } = useSelector((state) => state.auth);
+
   const data = state?.filter((item) => {
     return item.id === id;
   });
-  console.log(data && data[0].url);
+
+
+  const toCapitalize = (str) => {
+    const arr = str.split(" ");
+    for (var i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1).toLowerCase() + " ";
+    }
+    return arr;
+  };
 
   return (
     <main className="details-main">
@@ -47,41 +57,29 @@ const Details = () => {
           <div className="details-info-container">
             <div className="details-info-up">
               <div className="details-info-up-left">
-                <span>T</span>
-                <p>Tarik Sitki</p>
+                <span>{data && data[0].userName[0].toUpperCase()} </span>
+                <p>{data && toCapitalize(data[0].userName)}</p>
               </div>
 
               <div className="details-info-up-right">
-                <p>22.04.2022</p>
+                <p>{data && data[0].blogDate} </p>
               </div>
             </div>
 
             <div className="details-info-title-div">
-              <h2 className="details-info-title">Lorem Lorem Lorem LOrem </h2>
+              <h2 className="details-info-title"><p>{data && toCapitalize(data[0].title)}</p> </h2>
             </div>
 
             <div className="details-info-content-div">
               <p className="details-info-content">
-                {" "}
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum
-                itaque dolores architecto iusto, minima veniam aliquam quam a
-                repellat optio hic eum quidem autem soluta distinctio ad ullam
-                consequuntur delectus labore officia magnam? Dicta, sequi.
-                Temporibus vero, accusantium commodi quaerat laudantium ratione
-                mollitia aspernatur delectus porro, sapiente, maiores natus et
-                magnam error modi nulla non. Ea doloribus eligendi magni sequi
-                odit nemo quod voluptates est, error fugiat necessitatibus enim
-                beatae qui aperiam tempora voluptatem officia quam, quas rem
-                quo, hic veritatis eos tempore. Cum dolor nisi minima saepe sed
-                amet vero ab, praesentium modi pariatur, ea voluptates,
-                voluptatum ipsam et!{" "}
+                {data && data[0].content}
               </p>
             </div>
 
             <div className="author-info-div">
-              <span>Author : </span>
-              <span>E-Mail : </span>
-              <span>Country : </span>
+              <span>Author : {data && toCapitalize(data[0].userName)} </span>
+              <span>E-Mail : {data && (data[0].userEmail)} </span>
+              <span>Country : {data && (data[0].userCountry)} </span>
             </div>
 
             <div className="details-bottom-icons">

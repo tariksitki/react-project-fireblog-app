@@ -32,13 +32,15 @@ export const auth = getAuth();
 
     // signUp:
 
-export const signUp = async ({email, password}, displayName) => {
+export const signUp = async ({email, password, country}, displayName) => {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    console.log(userCredential);
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password, country);
+    console.log(country);
 
     await updateProfile(auth.currentUser, {
       displayName: displayName,
+      photoURL : country
+      // update isleminde phoneNumber calismiyor.
     });
 
     // try icinde islem basarili ise navigate kullanacagiz navigate props gelecek
@@ -50,7 +52,6 @@ export const signUp = async ({email, password}, displayName) => {
 
 
 ///////////  sign in:
-
 
 export const signIn = async ({email, password}) => {
   try {

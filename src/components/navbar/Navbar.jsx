@@ -163,7 +163,7 @@ export default function Navbar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }} >
+    <Box sx={{ flexGrow: 1 }} className = "navbar-box" >
       <AppBar position="static" >
         <Toolbar className = "navbar">
           <IconButton
@@ -177,7 +177,7 @@ export default function Navbar() {
           </IconButton>
           <Typography
           className='navbar-logo'
-            style={{fontWeight : "600", fontSize : "1.8rem"}}
+            style={{fontWeight : "600", fontSize : "1.6rem"}}
             variant="h5"
             noWrap
             component="div"

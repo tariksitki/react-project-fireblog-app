@@ -1,14 +1,18 @@
 @import "../../scss/variables";
 
-.navbar {
-    height: 10vh;
-    background-color: $colorThree;
-    color: black;
-    
-    
+.navbar-box {
+    position: sticky;
+    top: 0;
+
+    .navbar {
+        height: 10vh;
+        background-color: $colorThree;
+        color: black;
+        position: sticky;
+        top: 0;
+    }
+
+
 }
 
-.navbar-logo {
-    font-weight: bold;
-    font-size: 2rem;
-}
+

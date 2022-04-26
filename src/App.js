@@ -13,14 +13,14 @@ function App() {
   const { currentUser } = useSelector((state) => state.auth);
   const { loading } = useSelector((state) => state.app);
   const blogData = CallUser();
-
+  
   const [ state ] = useSelector((state) => state.blog);
 
   useEffect(() => {
     // dispatch(clearLoading());
   
     dispatch(setBlog(blogData));
-
+  
     const userInfo = auth.onAuthStateChanged((user) => {
       dispatch(setCurrentUser(user));
     });

@@ -148,7 +148,7 @@ const BlogCard = ({ blog }) => {
         </div>
 
         <div className="content-div">
-          <p onClick={handleCard}>{content.slice(0, 163)}... </p>
+          <p onClick={handleCard}>{content.slice(0, 150)}... </p>
         </div>
 
         <div className="info-section-down">

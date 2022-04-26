@@ -24,7 +24,6 @@ const Register = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     signUp(registerState, displayName);
-    console.log(registerState)
   };
 
   return (

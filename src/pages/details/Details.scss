@@ -8,6 +8,7 @@
     min-height: 90vh;
     display: flex;
     justify-content: center;
+    
 
     .details-container {
         border-radius: 1rem;
@@ -26,7 +27,7 @@
                 display: flex;
                 align-items: center;
                 .details-logo {
-                    font-size: 1.7rem;
+                    font-size: 1.4rem;
                 }
             }
             .details-categories-div {
@@ -50,7 +51,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 2rem;
+            margin-top: 5rem;
 
             .image-div {
                 width: 100%;
@@ -85,7 +86,7 @@
                         span {
                             background-color: $colorTwo;
                             padding: 0.5rem;
-                            border-radius: 42%;
+                            border-radius: 50%;
                             font-size: 1.4rem; 
                         }
                         p {
@@ -103,6 +104,8 @@
 
                     .details-info-title {
                         text-align: center;
+                        font-size: 1.4rem;
+                        font-weight: 600;
                     }
                 }
                 .details-info-content-div {

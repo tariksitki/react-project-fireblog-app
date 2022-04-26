@@ -14,17 +14,18 @@ const NewBlog = () => {
     content: "",
     userEmail : "",
     userName : "",
-    date : ""
+    date : "",
+    userCountry : ""
   });
 
   const {currentUser} = useSelector(state => state.auth);
-  const {email, displayName} = currentUser;
+  const {email, displayName, photoURL} = currentUser;
+  // firebase de user a ait country bilgisi olmadigi icin photoURL kullandik
 
   useEffect(() => {
     const date = new Date().toLocaleDateString();
-    setInfo({...info, userEmail : email, userName : displayName, date : date})
+    setInfo({...info, userEmail : email, userName : displayName, date : date, userCountry : photoURL})
   }, [currentUser]);
-
 
   const handleInfo = () => {
     addUser(info);
