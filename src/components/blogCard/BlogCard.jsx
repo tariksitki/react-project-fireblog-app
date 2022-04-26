@@ -117,9 +117,15 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
+import { useNavigate } from "react-router-dom";
 
-const BlogCard = ({blog}) => {
-  const {blogDate, title, id, content, url, userName, userEmail} = blog;
+const BlogCard = ({ blog }) => {
+  const { blogDate, title, id, content, url, userName, userEmail } = blog;
+  const navigate = useNavigate();
+
+  const handleCard = () => {
+    navigate(`/details/${id}`);
+  };
   return (
     <main className="card-main">
       <section className="image-container">
@@ -127,6 +133,7 @@ const BlogCard = ({blog}) => {
           className="card-image"
           src={url}
           alt="blog-image"
+          onClick={handleCard}
         />
       </section>
 
@@ -137,42 +144,45 @@ const BlogCard = ({blog}) => {
         </div>
 
         <div className="title-div">
-          <h3>{title.slice(0, 35)} </h3>
+          <h3 onClick={handleCard}>{title.slice(0, 35)} </h3>
         </div>
 
         <div className="content-div">
-          <p>{content.slice(0, 180)}... </p>
+          <p onClick={handleCard}>{content.slice(0, 163)}... </p>
         </div>
 
         <div className="info-section-down">
           <div className="user-info-div">
             <div>
               <span>From</span>
-              <span className="span-email" > {userEmail} </span>
+              <span className="span-email"> {userEmail} </span>
             </div>
             {/* <span className="user-icon">R</span> */}
           </div>
 
           <div className="icons-div">
-            <div className="icons-div-inner" >
+            <div className="icons-div-inner">
               <div>
                 <FavoriteBorderIcon className="info-icon" />
                 {/* <FavoriteIcon /> */}
               </div>
 
               <div>
-                <ChatBubbleOutlineIcon className="info-icon"/>
+                <ChatBubbleOutlineIcon className="info-icon" />
                 {/* <ChatBubbleIcon /> */}
               </div>
 
               <div>
-                <VisibilityOutlinedIcon  className="info-icon"/>
+                <VisibilityOutlinedIcon className="info-icon" />
               </div>
 
               <div>
                 <BookmarkBorderOutlinedIcon className="info-icon" />
               </div>
+            </div>
 
+            <div className="icons-div-right">
+              <span onClick={handleCard}>VIEW MORE</span>
             </div>
           </div>
         </div>

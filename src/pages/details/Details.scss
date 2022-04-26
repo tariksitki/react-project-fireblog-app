@@ -1,0 +1,144 @@
+
+
+@import "../../scss/variables";
+
+.details-main {
+    background-color: $colorOne;
+    width: 100vw;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+
+    .details-container {
+        border-radius: 1rem;
+        width: 70%;
+        background-color: white;
+        margin-top: 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .details-main-up {
+            border-bottom: 1px solid black;
+            width: 95%;
+            .details-logo-div {
+                height: 5rem;
+                display: flex;
+                align-items: center;
+                .details-logo {
+                    font-size: 1.7rem;
+                }
+            }
+            .details-categories-div {
+                display: flex;
+                padding: 0.5rem;
+                justify-content: space-around;
+                p {
+                    transition: all 300ms;
+                    cursor: pointer;
+                    padding: 0.5rem;
+                    border-radius: 5px;
+                    &:hover {
+                        background-color: $colorThree;
+                        transition: all 300ms;
+                    }
+                }
+            }
+        }
+        .details-main-down {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+
+            .image-div {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                .details-image {
+                    width:50%;
+                    border-radius: 0.6rem; 
+                }
+            }
+            .details-info-container {
+                width: 70%;
+                margin: auto;
+                // background-color: antiquewhite;
+                margin-top: 4rem;
+                margin-bottom: 5rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .details-info-up {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-bottom: 1px solid black;
+                    padding-bottom: 0.3rem;
+
+                    .details-info-up-left {
+                        display: flex;
+                        align-items: center;
+                        span {
+                            background-color: $colorTwo;
+                            padding: 0.5rem;
+                            border-radius: 42%;
+                            font-size: 1.4rem; 
+                        }
+                        p {
+                            margin-left: 1.5rem;
+                            font-size: 1.1rem;
+                            text-transform: capitalize;
+                        }
+                    }
+                }
+
+
+                .details-info-title-div {
+                    width: 100%;
+                    margin-top: 3rem;
+
+                    .details-info-title {
+                        text-align: center;
+                    }
+                }
+                .details-info-content-div {
+                    width: 100%;
+                    margin-top: 3rem;
+                    border-bottom: 1px solid black;
+                    padding-bottom: 3rem;
+                    .details-info-content {
+                        font-size: 1.2rem;
+                        line-height: 2rem;
+                        text-indent: 3rem;
+                        text-align: justify;
+                    }
+                }
+
+                .author-info-div {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    line-height: 1.9rem;
+                    padding-top: 1rem;
+                    border-bottom: 1px solid black;
+                    padding-bottom: 1.4rem ;
+                }
+
+                .details-bottom-icons {
+                    width: 100%;
+                    display: flex;
+                    margin-top: 1rem;
+                    
+                    .details-info-icon {
+                        margin-right: 1rem;
+                    }
+                }
+            }
+        }
+    }
+    
+}

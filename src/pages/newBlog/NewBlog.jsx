@@ -5,7 +5,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import { addUser } from "../../helpers/fireDatabase";
-
+import "./NewBlog.scss";
 
 const NewBlog = () => {
   const [info, setInfo] = useState({
@@ -31,9 +31,9 @@ const NewBlog = () => {
   };
 
   return (
-    <main className="main">
+    <main className="newBlog-main">
       <Box
-        className="form"
+        className="newBlog-form"
         component="form"
         sx={{
           "& > :not(style)": { m: 1, width: "25ch" },
@@ -41,7 +41,12 @@ const NewBlog = () => {
         noValidate
         autoComplete="off"
       >
+        <div className="title-div">
+          <h2 >NEW BLOG</h2>
+        </div>
+
         <TextField
+          className="newBlog-input newBlog-title-input"
           id="outlined-basic"
           label="Title*"
           variant="outlined"
@@ -50,6 +55,7 @@ const NewBlog = () => {
         />
 
         <TextField
+          className="newBlog-input"
           id="outlined-basic"
           label="Image URL*"
           variant="outlined"
@@ -58,6 +64,7 @@ const NewBlog = () => {
         />
 
         <TextField
+          className="newBlog-input"
           id="outlined-textarea"
           label="Content*"
           placeholder="Content*"
@@ -68,13 +75,15 @@ const NewBlog = () => {
         />
         <div>
           <Stack spacing={2} direction="row">
-            <Button variant="contained" onClick={handleInfo}>
+            <Button className="newBlog-submit" variant="contained" onClick={handleInfo}>
               SUBMIT NEW BLOG
             </Button>
           </Stack>
         </div>
       </Box>
     </main>
+
+
   );
 };
 

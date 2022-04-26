@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import "./Register.scss";
 import { signUp } from "../../helpers/firebase";
 import { useState } from "react";
+import { signUpProvider, signIn } from "../../helpers/firebase";
+import googleIcon from "../../assets/Google_Icon.webp";
 
 const Register = () => {
   const [registerState, setRegisterState] = useState({
@@ -28,7 +30,7 @@ const Register = () => {
   return (
     <main className="register-main">
           <Box
-            className="form" onSubmit={handleRegister}
+            className="register-form" onSubmit={handleRegister}
             component="form"
             sx={{
               "& > :not(style)": { m: 1, width: "25ch" },
@@ -36,7 +38,10 @@ const Register = () => {
             noValidate
             autoComplete="off"
           >
+            <h2>REGISTER</h2>
+
             <TextField
+              className="register-input"
               id="outlined-basic firstname"
               label="FirstName*"
               variant="outlined"
@@ -45,6 +50,7 @@ const Register = () => {
             />
 
             <TextField
+              className="register-input"
               id="outlined-basic lastname"
               label="LastName*"
               variant="outlined"
@@ -53,6 +59,7 @@ const Register = () => {
             />
 
             <TextField
+              className="register-input"
               id="outlined-basic email"
               label="E-Mail*"
               variant="outlined"
@@ -65,13 +72,14 @@ const Register = () => {
             <CountryInput registerState = {registerState} setRegisterState = {setRegisterState}
             />
 
-            <div>
-              <Stack spacing={2} direction="row">
-                <Button variant="contained" onClick={handleRegister} >REGISTER</Button>
+              <Stack spacing={2} direction="row" className="register-button-div" >
+                <Button variant="contained" onClick={handleRegister} className = "register-register-button" >REGISTER</Button>
               </Stack>
-            </div>
+
+              <Stack spacing={2} direction="row" className="register-google-div" >
+                <Button variant="contained" className="register-google-button" onClick={() => signUpProvider()} >REGISTER With <img src={googleIcon} alt="" /> </Button>
+            </Stack>
           </Box>
-      
     </main>
   );
 };

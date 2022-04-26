@@ -6,6 +6,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 export default function CountryInput({registerState, setRegisterState}) {
   return (
     <Autocomplete
+      className='register-input'
       id="country-select-demo"
       sx={{ width: 300 }}
       options={countries}

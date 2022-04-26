@@ -1,0 +1,51 @@
+
+@import "../../scss/variables"; 
+
+.newBlog-main {
+    width: 100vw;
+    min-height: 91vh;
+    background-color: $colorOne;
+    display: flex;
+    justify-content: center;
+    
+
+    .newBlog-form {
+        width: 40%;
+        background-color: white;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 1rem;
+
+        .title-div {
+            width: 60%;
+            // background-color: aqua;
+            margin-top: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid;
+            h2 {
+                text-align: center;  
+            }
+        };
+
+        .newBlog-input {
+            width: 60%;
+            margin-top: 1.5rem;
+
+        }
+
+        .newBlog-title-input {
+            margin-top: 6rem;
+        }
+
+        .newBlog-submit {
+            margin-top: 2rem;
+            background-color: #fc743e;
+            font-size: 1rem;
+            &:hover {
+                box-shadow: 0 0 1rem 2px #fc743e;
+            }
+        }
+    }
+}

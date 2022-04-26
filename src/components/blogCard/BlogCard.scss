@@ -4,20 +4,26 @@
     width: 80%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 2.5rem;
+    margin-top: 3.6rem;
 
     .image-container {
-        
         .card-image {
+            background-color: black;
             width: 26rem;
             height: 14rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 300ms;
+            &:hover {
+                opacity: 0.5;
+                transition: all 300ms;
+            }
         }
     }
     .info-section {
         width: 50%;
-        .date-div, .title-div, .content-div {
-            
-        }
+        border-bottom: 1px solid;
+        
         .date-div {
             display: flex;
             justify-content: space-between;
@@ -25,21 +31,20 @@
                 font-size: 0.9rem;
             }
             .user-icon {
-                background-color: $colorThree;
+                background-color: #fc743e;
                 padding: 0.5rem;
-                border-radius: 47%;
+                border-radius: 43%;
             }
         }
         .title-div {
             h3 {
                 font-size: 1.2rem;
+                cursor: pointer;
             }
         }
         .content-div  {
             margin-top: 0.6rem;
             height: 5rem;
-            
-
             
             p {
                 font-size: 1rem;
@@ -50,6 +55,7 @@
                 word-break: break-word; 
                 text-align: justify;
                 // table-layout:fixed;
+                cursor: pointer;
             }
         }
         .info-section-down {
@@ -68,7 +74,8 @@
 
             .icons-div {
                 display: flex;
-                // justify-content: end;
+                justify-content: space-between;
+                align-items: center;
                 margin-top: 0.4rem;
                 
                 .icons-div-inner {
@@ -78,6 +85,23 @@
                     margin-top: 0.3rem;
                     .info-icon {
                         font-size: 1.3rem;
+                    }
+                }
+
+                .icons-div-right {
+                    span {
+                        transition: all 300ms;
+                        padding-top: 0.3rem;
+                        padding-bottom: 0.3rem;
+                        border-radius: 5px;
+                        font-size: 0.9rem;
+                        &:hover {
+                            background-color: #fc743e;
+                            cursor: pointer;
+                            padding-top: 0.3rem;
+                            padding-bottom: 0.3rem;
+                            transition: all 300ms;
+                        }
                     }
                 }
             }

@@ -1,22 +1,65 @@
 @import "../../scss/variables";
 
 .register-main {
-    width: 100%;
-    height: 95vh;
+    width: 100vw;
+    min-height: 90vh;
     display: flex;
     justify-content: center;
-    align-items: center;
     background-color: $colorOne;
 
-    .form {
-        width: 60%;
-        height: 80%;
+    .register-form {
+        width: 40%;
         background-color: white;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
+        margin-top: 2rem;
+        border-radius: 1rem;
         
-        
+        h2 {
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+            font-size: 1.7rem;
+        }
+
+        .register-input {
+            width: 60%;
+        }
+
+        .register-button-div {
+            margin-top: 2rem;
+        }
+
+        .register-register-button {
+            background-color: #fc743e;
+            width: 13rem;
+            font-size: 1rem;
+            &:hover {
+                box-shadow: 0 0 1rem 2px #fc743e;
+            }
+        }
+
+        .register-button-div, .register-google-div {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            
+            .register-google-button {
+                background-color: #fc743e;
+                width: 13rem;
+                font-size: 1rem;
+                padding: 0;
+                margin-top: 1rem;
+                &:hover {
+                    box-shadow: 0 0 1rem 2px #fc743e;
+                }
+    
+                img {
+                    margin-left: 1rem;
+                    width: 21%;
+                }
+            }
+        }
     }
 }
