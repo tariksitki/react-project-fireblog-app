@@ -7,12 +7,40 @@ import { useState } from "react";
 import { signUpProvider, signIn } from "../../helpers/firebase";
 import "./Login.scss";
 import googleIcon from "../../assets/Google_Icon.webp";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const {currentUser} = useSelector(state => state.auth);
+  console.log(currentUser);
+
   const [loginState, setLoginState] = useState({
     email : "",
     password : ""
   });
+
+  const handleLogin = () => {
+    if (loginState.email && loginState.password && !currentUser) {
+      signIn(loginState, navigate);
+      loginState.email = "";
+      loginState.password = "";
+
+    } else if ((loginState.email && loginState.password) && (currentUser) ) {
+      alert("You are already Log In. If you want to log in with another username, please log out first");
+
+    }  else if (!(loginState.email && loginState.password)) {
+      alert("Please fill in all fields");
+    } 
+  };
+
+  const handleGoogleLogin = () => {
+    if (!currentUser) {
+      signUpProvider(navigate);
+    } else {
+      alert("You are already Log In. If you want to log in with another username, please log out first")
+    }
+  };
 
   return (
     <main className="login-main">
@@ -25,7 +53,9 @@ const Login = () => {
             noValidate
             autoComplete="off"
           >
-            <h2>LOGIN</h2>
+            <div className="login-title-div" >
+                <h2>LOGIN</h2>
+            </div>
 
             <TextField
               className="login-email"
@@ -37,13 +67,15 @@ const Login = () => {
             />
             <LoginPassword loginState = {loginState} setLoginState = {setLoginState}  />
 
+            <p className="no-account" >You have not a account? Please <span className="no-account-span"> <Link to={"/register"} >Register</Link></span> </p>
+
             <Stack spacing={2} direction="row" className="login-login-div" >
-                <Button variant="contained" className="login-login-button" onClick= {() => signIn(loginState)} >LOGIN</Button>
+                <Button variant="contained" className="login-login-button" onClick= {handleLogin} >LOGIN</Button>
             </Stack>
 
           
             <Stack spacing={2} direction="row" className="login-google-div" >
-                <Button variant="contained" className="login-google-button" onClick={() => signUpProvider()} >LOGIN With <img src={googleIcon} alt="" /> </Button>
+                <Button variant="contained" className="login-google-button" onClick={handleGoogleLogin} >LOGIN With <img src={googleIcon} alt="" /> </Button>
             </Stack>
           
           </Box>

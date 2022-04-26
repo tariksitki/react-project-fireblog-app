@@ -16,11 +16,17 @@
         margin-top: 2rem;
         border-radius: 1rem;
         
-        h2 {
-            text-align: center;
-            margin-top: 2rem;
-            margin-bottom: 4rem;
-            font-size: 1.7rem;
+        .register-title-div {
+            margin-top: 5%;
+            margin-bottom: 3%;
+            border-bottom: 1px solid #fc743e;
+            width: 50%;
+            padding-bottom: 2%;
+
+            h2 {
+                text-align: center;
+                font-size: 1.5rem;
+            }
         }
 
         .register-input {
@@ -28,13 +34,13 @@
         }
 
         .register-button-div {
-            margin-top: 2rem;
+            margin-top: 3%;
         }
 
         .register-register-button {
             background-color: #fc743e;
             width: 13rem;
-            font-size: 1rem;
+            font-size: 0.9rem;
             &:hover {
                 box-shadow: 0 0 1rem 2px #fc743e;
             }
@@ -48,16 +54,16 @@
             .register-google-button {
                 background-color: #fc743e;
                 width: 13rem;
-                font-size: 1rem;
+                font-size: 0.9rem;
                 padding: 0;
-                margin-top: 1rem;
+                margin-top: 2%;
                 &:hover {
                     box-shadow: 0 0 1rem 2px #fc743e;
                 }
     
                 img {
                     margin-left: 1rem;
-                    width: 21%;
+                    width: 20%;
                 }
             }
         }

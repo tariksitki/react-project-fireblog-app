@@ -32,9 +32,10 @@ export const auth = getAuth();
 
     // signUp:
 
-export const signUp = async ({email, password, country}, displayName) => {
+export const signUp = async ({email, password, country}, displayName, navigate) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password, country);
+    navigate("/");
     console.log(country);
 
     await updateProfile(auth.currentUser, {
@@ -53,9 +54,10 @@ export const signUp = async ({email, password, country}, displayName) => {
 
 ///////////  sign in:
 
-export const signIn = async ({email, password}) => {
+export const signIn = async ({email, password}, navigate) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    navigate("/");
   } catch (error) {
     console.log(error);
   }
@@ -103,8 +105,8 @@ export const signUpProvider = (navigate) => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
   .then((result) => {
-    console.log(result);
-    // navigate("/");
+    // console.log(result);
+    navigate("/");
   }).catch((error) => {
     console.log(error);
   });

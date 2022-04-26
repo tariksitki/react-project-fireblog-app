@@ -9,8 +9,13 @@ import { signUp } from "../../helpers/firebase";
 import { useState } from "react";
 import { signUpProvider, signIn } from "../../helpers/firebase";
 import googleIcon from "../../assets/Google_Icon.webp";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const {currentUser} = useSelector(state => state.auth);
+
   const [registerState, setRegisterState] = useState({
     firstName : "",
     lastName : "",
@@ -23,8 +28,28 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    signUp(registerState, displayName);
+    if (currentUser) {
+      alert("You are already Log In. If you want to log in with another username, please log out first");
+
+    } else if (!(registerState.firstName && registerState.lastName && registerState.email && registerState.password && registerState.country)) {
+      alert ("Please fill in all fields")
+
+    } else if ((registerState.firstName && registerState.lastName && registerState.email && registerState.password && registerState.country) && !currentUser) {
+      signUp(registerState, displayName, navigate);
+    }
+
+    console.log(currentUser);
   };
+
+
+  const handleRegisterGoogle = () => {
+    if (currentUser) {
+        alert("You are already Log In. If you want to log in with another username, please log out first");
+
+    } else if (!currentUser) {
+        signUpProvider(navigate);
+    }
+  }
 
   return (
     <main className="register-main">
@@ -37,7 +62,9 @@ const Register = () => {
             noValidate
             autoComplete="off"
           >
-            <h2>REGISTER</h2>
+            <div className="register-title-div">
+              <h2>REGISTER</h2>
+            </div>
 
             <TextField
               className="register-input"
@@ -76,7 +103,7 @@ const Register = () => {
               </Stack>
 
               <Stack spacing={2} direction="row" className="register-google-div" >
-                <Button variant="contained" className="register-google-button" onClick={() => signUpProvider()} >REGISTER With <img src={googleIcon} alt="" /> </Button>
+                <Button variant="contained" className="register-google-button" onClick={handleRegisterGoogle} >REGISTER With <img src={googleIcon} alt="" /> </Button>
             </Stack>
           </Box>
     </main>

@@ -105,8 +105,16 @@ export default function Navbar() {
       <Link to = "/profile" >
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       </Link>
+
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
       <MenuItem onClick={() => logOut()} > LogOut </MenuItem>
+      <Link to={"/register"} >
+          <MenuItem > Register </MenuItem>
+      </Link>
+
+      <Link to={"/login"}>
+        <MenuItem  > Login </MenuItem>
+      </Link>
     </Menu>
   );
 
