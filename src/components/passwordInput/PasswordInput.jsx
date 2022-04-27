@@ -10,17 +10,22 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export default function PasswordInput({registerState, setRegisterState}) {
   const [values, setValues] = React.useState({
-    password: '',
+    // password: '',
     showPassword: false,
   });
 
   const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+    // setValues({ ...values, [prop]: event.target.value });
+
+    setRegisterState({
+      ...registerState,
+      password : event.target.value
+    })
   };
 
-  React.useEffect(() => {
-    setRegisterState({...registerState, password : values.password})
-  }, [values]);
+  // React.useEffect(() => {
+  //   setRegisterState({...registerState, password : values.password})
+  // }, []);
 
   const handleClickShowPassword = () => {
     setValues({
@@ -39,7 +44,8 @@ export default function PasswordInput({registerState, setRegisterState}) {
           <OutlinedInput
             id="outlined-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
+            // value={values.password}
+            value={registerState.password}
             onChange={handleChange('password')}
             endAdornment={
               <InputAdornment position="end">

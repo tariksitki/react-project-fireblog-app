@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./Details.scss";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -11,6 +11,7 @@ import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlin
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 
 const Details = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [state] = useSelector((state) => state.blog);
   const { currentUser } = useSelector((state) => state.auth);
@@ -33,7 +34,7 @@ const Details = () => {
       <div className="details-container">
         <section className="details-main-up">
           <div className="details-logo-div">
-            <h1 className="details-logo">BLOGGER</h1>
+            <h1 className="details-logo" onClick={() => (navigate("/")) } >BLOGGER</h1>
           </div>
 
           <div className="details-categories-div">

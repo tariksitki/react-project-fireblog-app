@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import BlogCard from "../../components/blogCard/BlogCard";
 import "./Dashboard.scss";
 
 const Dashboard = () => {
   const [state] = useSelector((state) => state.blog);
+  const navigate = useNavigate();
 
   return (
     // <div style={{display : "flex", flexWrap : "wrap"}} >

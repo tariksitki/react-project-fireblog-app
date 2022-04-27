@@ -30,7 +30,14 @@ const Register = () => {
     e.preventDefault();
     if (currentUser) {
       alert("You are already Log In. If you want to log in with another username, please log out first");
-
+      setRegisterState({
+        firstName : "",
+        lastName : "",
+        email : "",
+        password : "",
+        country : ""
+      });
+    
     } else if (!(registerState.firstName && registerState.lastName && registerState.email && registerState.password && registerState.country)) {
       alert ("Please fill in all fields")
 
@@ -41,7 +48,7 @@ const Register = () => {
     console.log(currentUser);
   };
 
-
+  console.log(registerState)
   const handleRegisterGoogle = () => {
     if (currentUser) {
         alert("You are already Log In. If you want to log in with another username, please log out first");

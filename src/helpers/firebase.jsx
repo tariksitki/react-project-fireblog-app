@@ -72,7 +72,7 @@ export const logOut = async (navigate) => {
   try {
     signOut(auth);
     alert("Logout Succesfully");
-    // navigate("/")
+    navigate("/")
   } catch (error) {
     alert(error);
   }

@@ -13,7 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
   const {currentUser} = useSelector(state => state.auth);
-  console.log(currentUser);
+  
 
   const [loginState, setLoginState] = useState({
     email : "",
@@ -23,14 +23,18 @@ const Login = () => {
   const handleLogin = () => {
     if (loginState.email && loginState.password && !currentUser) {
       signIn(loginState, navigate);
-      loginState.email = "";
-      loginState.password = "";
+      setLoginState({email : ""})
+      setLoginState({password : ""})
 
     } else if ((loginState.email && loginState.password) && (currentUser) ) {
       alert("You are already Log In. If you want to log in with another username, please log out first");
+      loginState.email = "";
+      loginState.password = "";
 
     }  else if (!(loginState.email && loginState.password)) {
       alert("Please fill in all fields");
+      setLoginState( {email : "", password : ""});
+      
     } 
   };
 

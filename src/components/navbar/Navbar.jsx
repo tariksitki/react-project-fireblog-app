@@ -16,7 +16,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import { Link} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { logOut } from '../../helpers/firebase';
 import "./Navbar.scss";
 
@@ -61,6 +61,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -85,6 +86,10 @@ export default function Navbar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleLogOut = () => {
+    logOut(navigate);
+  }
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -107,7 +112,7 @@ export default function Navbar() {
       </Link>
 
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={() => logOut()} > LogOut </MenuItem>
+      <MenuItem onClick={handleLogOut} > LogOut </MenuItem>
       <Link to={"/register"} >
           <MenuItem > Register </MenuItem>
       </Link>
@@ -184,7 +189,8 @@ export default function Navbar() {
             <MenuIcon />
           </IconButton>
           <Typography
-          className='navbar-logo'
+            onClick={() => (navigate("/"))}
+            className='navbar-logo'
             style={{fontWeight : "600", fontSize : "1.6rem"}}
             variant="h5"
             noWrap

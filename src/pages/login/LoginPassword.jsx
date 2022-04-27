@@ -12,18 +12,18 @@ import { useEffect } from 'react';
 
 export default function LoginPassword({loginState, setLoginState}) {
   const [values, setValues] = React.useState({
-    password: '',
+    // password: '',
     showPassword: false,
   });
-//   setLoginState({...loginState, password : values.password });
 
   const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+    // setValues({ ...values, [prop]: event.target.value });
+    setLoginState({...loginState ,password : event.target.value});
   };
 
-  useEffect(() => {
-    setLoginState({...loginState, password : values.password });
-  }, [values]);
+  // useEffect(() => {
+  //   setLoginState({...loginState, password : values.password });
+  // }, [values]);
 
   const handleClickShowPassword = () => {
     setValues({
@@ -44,7 +44,10 @@ export default function LoginPassword({loginState, setLoginState}) {
             
             id="outlined-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
+            // value={values.password}
+            // onChange={handleChange('password')}
+
+            value={loginState.password}
             onChange={handleChange('password')}
             endAdornment={
               <InputAdornment position="end">
