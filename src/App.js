@@ -13,8 +13,9 @@ function App() {
   const { currentUser } = useSelector((state) => state.auth);
   const { loading } = useSelector((state) => state.app);
   const blogData = CallUser();
-  // console.log(currentUser);
-  
+
+  // console.log(currentUser)
+
   const [ state ] = useSelector((state) => state.blog);
 
   useEffect(() => {

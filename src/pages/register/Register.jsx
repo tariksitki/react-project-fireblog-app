@@ -48,7 +48,6 @@ const Register = () => {
     console.log(currentUser);
   };
 
-  console.log(registerState)
   const handleRegisterGoogle = () => {
     if (currentUser) {
         alert("You are already Log In. If you want to log in with another username, please log out first");

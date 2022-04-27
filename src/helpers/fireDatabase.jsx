@@ -62,3 +62,36 @@ export const CallUser = () => {
       
     return blogList;
 };
+
+
+
+
+
+
+////////////// delete data from database:
+
+export const deleteUser = (dataId, navigate) => {
+  const db = getDatabase();
+  const userRef = ref(db, "database");
+  // Toastify("Data is deleted");
+  remove(ref(db, "database/" + dataId));
+  alert("ver silindi");
+  navigate("/");
+};
+
+
+
+
+
+
+////// Edit User:
+
+export const EditUser = (info) => {
+  const db = getDatabase();
+  const updates = {};
+  updates["database/" + info.id] = info;
+  // bizim database imiz icine gir, edit tusuna tiklanan kisinin id numarasini al ve bunun bilgilerini güncelle demek
+
+  return update(ref(db), updates);
+};
+

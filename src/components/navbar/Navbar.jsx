@@ -1,24 +1,24 @@
-
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import { Link, useNavigate} from 'react-router-dom';
-import { logOut } from '../../helpers/firebase';
+import * as React from "react";
+import { styled, alpha } from "@mui/material/styles";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import InputBase from "@mui/material/InputBase";
+import Badge from "@mui/material/Badge";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import MailIcon from "@mui/icons-material/Mail";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import MoreIcon from "@mui/icons-material/MoreVert";
+import { Link, useNavigate } from "react-router-dom";
+import { logOut } from "../../helpers/firebase";
 import "./Navbar.scss";
+import { useSelector } from "react-redux";
 
 // const Search = styled('div')(({ theme }) => ({
 //   position: 'relative',
@@ -47,21 +47,22 @@ import "./Navbar.scss";
 // }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
+  color: "inherit",
+  "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
     },
   },
 }));
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.auth);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -79,7 +80,6 @@ export default function Navbar() {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
-    
   };
 
   const handleMobileMenuOpen = (event) => {
@@ -88,54 +88,92 @@ export default function Navbar() {
 
   const handleLogOut = () => {
     logOut(navigate);
-  }
+  };
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <Link to = "/profile" >
-        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      </Link>
+      currentUser ? (
+        <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        id={menuId}
+        keepMounted
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={() => {
+          handleMenuClose()
+          navigate("/profile")
+        }}>Profile
+        </MenuItem>
 
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleLogOut} > LogOut </MenuItem>
-      <Link to={"/register"} >
-          <MenuItem > Register </MenuItem>
-      </Link>
+        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
 
-      <Link to={"/login"}>
-        <MenuItem  > Login </MenuItem>
-      </Link>
-    </Menu>
+        <MenuItem onClick={() => {
+          handleMenuClose()
+          navigate("/newBlog")
+        }}>New Blog
+        </MenuItem>
+
+        <MenuItem onClick={() => {
+          handleLogOut() 
+          handleMenuClose()
+        }}> LogOut 
+        </MenuItem>
+
+      </Menu>
+      ) : (
+        <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        id={menuId}
+        keepMounted
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+      >
+        
+        <MenuItem  onClick={() => {
+          handleMenuClose()
+          navigate("/register")
+        }} > Register 
+        </MenuItem>
+        
+        <MenuItem onClick={() => {
+            handleMenuClose()
+            navigate("/login")
+          }} > Login 
+        </MenuItem>
+      </Menu>
+      )
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       id={mobileMenuId}
       keepMounted
       transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
@@ -148,6 +186,7 @@ export default function Navbar() {
         </IconButton>
         <p>Messages</p>
       </MenuItem>
+
       <MenuItem>
         <IconButton
           size="large"
@@ -176,26 +215,30 @@ export default function Navbar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }} className = "navbar-box" >
-      <AppBar position="static" >
-        <Toolbar className = "navbar">
+    <Box sx={{ flexGrow: 1 }} className="navbar-box">
+      <AppBar position="static">
+        <Toolbar className="navbar">
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
+            aria-controls={menuId}
+            aria-haspopup="true"
             sx={{ mr: 2 }}
+            // onClick = {handleProfileMenuOpen}
           >
             <MenuIcon />
           </IconButton>
+
           <Typography
-            onClick={() => (navigate("/"))}
-            className='navbar-logo'
-            style={{fontWeight : "600", fontSize : "1.6rem"}}
+            onClick={() => navigate("/")}
+            className="navbar-logo"
+            style={{ fontWeight: "600", fontSize: "1.6rem" }}
             variant="h5"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
+            sx={{ display: { xs: "none", sm: "block" } }}
           >
             BLOGGER
           </Typography>
@@ -208,9 +251,14 @@ export default function Navbar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search> */}
+
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <IconButton
+              size="large"
+              aria-label="show 4 new mails"
+              color="inherit"
+            >
               <Badge badgeContent={4} color="error">
                 <MailIcon />
               </Badge>
@@ -225,8 +273,6 @@ export default function Navbar() {
               </Badge>
             </IconButton>
 
-
-            
             <IconButton
               size="large"
               edge="end"
@@ -240,7 +286,7 @@ export default function Navbar() {
             </IconButton>
           </Box>
 
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="show more"

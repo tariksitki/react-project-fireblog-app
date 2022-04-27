@@ -3,7 +3,7 @@
 
 .newBlog-main {
     width: 100vw;
-    min-height: 91vh;
+    min-height: 90vh;
     background-color: $colorOne;
     display: flex;
     justify-content: center;
@@ -31,20 +31,25 @@
 
         .newBlog-input {
             width: 60%;
-            margin-top: 1.5rem;
+            margin-top: 3%;
 
         }
 
         .newBlog-title-input {
-            margin-top: 6rem;
+            margin-top: 10%;
         }
 
-        .newBlog-submit {
-            margin-top: 2rem;
-            background-color: #fc743e;
-            font-size: 1rem;
-            &:hover {
-                box-shadow: 0 0 1rem 2px #fc743e;
+        .new-button-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .newBlog-submit {
+                margin-top: 3%;
+                background-color: #fc743e;
+                font-size: 0.9rem;
+                &:hover {
+                    box-shadow: 0 0 1rem 2px #fc743e;
+                }
             }
         }
     }

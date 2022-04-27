@@ -28,7 +28,19 @@ const NewBlog = () => {
   }, [currentUser]);
 
   const handleInfo = () => {
-    addUser(info);
+    if (!currentUser) {
+      alert("Please login to Add a New Blog");
+    } else if (!(info.title && info.url && info.content)) {
+      alert("Please Fill All Fields")
+    } else if ((info.title && info.url && info.content) && currentUser) {
+      addUser(info);
+      setInfo({
+        ...info,
+        title : "",
+        url : "",
+        content : ""
+       })
+    }
   };
 
   return (
@@ -74,13 +86,13 @@ const NewBlog = () => {
           value={info.content}
           onChange={(e) => setInfo({ ...info, content: e.target.value })}
         />
-        <div>
-          <Stack spacing={2} direction="row">
+        
+          <Stack spacing={2} direction="row" className="new-button-container" >
             <Button className="newBlog-submit" variant="contained" onClick={handleInfo}>
               SUBMIT NEW BLOG
             </Button>
           </Stack>
-        </div>
+        
       </Box>
     </main>
 

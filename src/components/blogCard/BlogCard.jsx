@@ -118,13 +118,15 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const BlogCard = ({ blog }) => {
+  const {currentUser} = useSelector(state => state.auth);
   const { blogDate, title, id, content, url, userName, userEmail } = blog;
   const navigate = useNavigate();
 
   const handleCard = () => {
-    navigate(`/details/${id}`);
+      navigate(`/details/${id}`)
   };
   return (
     <main className="card-main">
