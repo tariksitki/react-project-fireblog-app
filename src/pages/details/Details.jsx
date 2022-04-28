@@ -44,8 +44,9 @@ const Details = () => {
   };
 
   const handleBlogEdit = () => {
-    
-  }
+    const dataId = data && data[0].id;
+    navigate(`/updateBlog/${dataId}`);
+  };
 
   return (
     <main className="details-main">
@@ -108,7 +109,7 @@ const Details = () => {
             <div className="author-info-div">
               <span>Author : {data && toCapitalize(data[0].userName)} </span>
               <span>E-Mail : {data && data[0].userEmail} </span>
-              <span>Country : {data && data[0].userCountry} </span>
+              <span>Country : {((currentUser && currentUser.providerData[0].providerId) === "password") ? (data &&  data[0].userCountry) : "unknown" } </span>
             </div>
 
             <div className="details-bottom-icons">

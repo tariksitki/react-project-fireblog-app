@@ -142,7 +142,7 @@ const BlogCard = ({ blog }) => {
       <section className="info-section">
         <div className="date-div">
           <p>{blogDate}</p>
-          <span className="user-icon"> {userName[0].toUpperCase()} </span>
+          <span className="user-icon"> {userName && userName[0].toUpperCase()} </span>
         </div>
 
         <div className="title-div">

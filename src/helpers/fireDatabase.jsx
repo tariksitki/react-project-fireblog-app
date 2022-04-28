@@ -84,12 +84,12 @@ export const deleteUser = (dataId, navigate) => {
 
 
 
-////// Edit User:
+////// Edit Blog:
 
-export const EditUser = (info) => {
+export const EditBlog = (updateInfo) => {
   const db = getDatabase();
   const updates = {};
-  updates["database/" + info.id] = info;
+  updates["database/" + updateInfo.id] = updateInfo;
   // bizim database imiz icine gir, edit tusuna tiklanan kisinin id numarasini al ve bunun bilgilerini güncelle demek
 
   return update(ref(db), updates);
