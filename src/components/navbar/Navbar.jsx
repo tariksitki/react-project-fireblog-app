@@ -110,7 +110,7 @@ export default function Navbar() {
       >
         <MenuItem onClick={() => {
           handleMenuClose()
-          navigate("/profile")
+          // navigate("/profile")
         }}>Profile
         </MenuItem>
 
@@ -213,7 +213,7 @@ export default function Navbar() {
       </MenuItem>
     </Menu>
   );
-
+      
   return (
     <Box sx={{ flexGrow: 1 }} className="navbar-box">
       <AppBar position="static">
@@ -253,6 +253,12 @@ export default function Navbar() {
           </Search> */}
 
           <Box sx={{ flexGrow: 1 }} />
+          
+          <div className="navbar-display-name" >
+            <span>
+                {currentUser ? currentUser.displayName : ""}
+            </span>
+          </div>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
               size="large"

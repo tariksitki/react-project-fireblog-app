@@ -3,6 +3,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
+import ToastifySuccess from "./toastify/ToastSuccess";
+import ToastifyError from "./toastify/ToastError";
 
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_APP_FIREBASE_ApiKey,
@@ -35,8 +37,8 @@ export const auth = getAuth();
 export const signUp = async ({email, password, country}, displayName, navigate) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password, country);
+    ToastifySuccess("You have registered succesfully");
     navigate("/");
-    console.log(country);
 
     await updateProfile(auth.currentUser, {
       displayName: displayName,
@@ -46,7 +48,7 @@ export const signUp = async ({email, password, country}, displayName, navigate) 
 
     // try icinde islem basarili ise navigate kullanacagiz navigate props gelecek
   } catch (error) {
-    console.log(error);
+    ToastifyError("Opppps Something went wrong");
   }
 };
 
@@ -57,9 +59,10 @@ export const signUp = async ({email, password, country}, displayName, navigate) 
 export const signIn = async ({email, password}, navigate) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    ToastifySuccess("You have successfully logged in")
     navigate("/");
   } catch (error) {
-    console.log(error);
+    ToastifyError("Ooopss something went wrong")
   }
 };
 

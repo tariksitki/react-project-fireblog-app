@@ -34,7 +34,6 @@ const Login = () => {
     }  else if (!(loginState.email && loginState.password)) {
       alert("Please fill in all fields");
       setLoginState( {email : "", password : ""});
-      
     } 
   };
 

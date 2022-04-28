@@ -7,6 +7,7 @@ import { setCurrentUser } from "./redux/actions/AuthActions";
 import { setLoading, clearLoading } from "./redux/actions/AppActions";
 import {CallUser} from "./helpers/fireDatabase";
 import {setBlog} from "./redux/actions/BlogActions"
+import {ToastContainer} from "react-toastify"
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function App() {
   return (
     <div className="App">
       <AppRouter />
+      <ToastContainer />
     </div>
   );
 }

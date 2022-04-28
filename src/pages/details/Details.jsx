@@ -109,7 +109,13 @@ const Details = () => {
             <div className="author-info-div">
               <span>Author : {data && toCapitalize(data[0].userName)} </span>
               <span>E-Mail : {data && data[0].userEmail} </span>
-              <span>Country : {((currentUser && currentUser.providerData[0].providerId) === "password") ? (data &&  data[0].userCountry) : "unknown" } </span>
+              <span>Country : {data &&  data[0].userCountry } </span>
+              {(data && data[0].updateDate) && (
+                <span> 
+                  Last Edit : {data && data[0].updateDate} from {data && data[0].userName }
+                </span>
+              )  }
+
             </div>
 
             <div className="details-bottom-icons">

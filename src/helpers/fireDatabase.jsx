@@ -11,6 +11,9 @@ import {
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {setBlog} from "../redux/actions/BlogActions";
+import {setLoading, clearLoading} from "../redux/actions/AppActions";
+import ToastifySuccess from "./toastify/ToastSuccess";
+import ToastifyError from "./toastify/ToastError";
 
 // import Toastify from "../toastify/Toastify";
 
@@ -39,12 +42,11 @@ export const addUser = function ({title, url, content, userEmail, userName, date
 // calling data from database:
 
 export const CallUser = () => {
-    // const [isLoading, setIsLoading] = useState();
     const [blogList, setBlogList] = useState();
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        // setIsLoading(true);
+        dispatch(setLoading());
 
         const db = getDatabase();
         const userRef = ref(db, "database");
@@ -56,7 +58,7 @@ export const CallUser = () => {
                 databaseArray.push({id, ...data[id]});
             }
             setBlogList(databaseArray);
-            // setIsLoading(false);
+            dispatch(clearLoading())
           });
     }, []);
       
@@ -71,12 +73,15 @@ export const CallUser = () => {
 ////////////// delete data from database:
 
 export const deleteUser = (dataId, navigate) => {
-  const db = getDatabase();
-  const userRef = ref(db, "database");
-  // Toastify("Data is deleted");
-  remove(ref(db, "database/" + dataId));
-  alert("ver silindi");
-  navigate("/");
+    try {
+      const db = getDatabase();
+      const userRef = ref(db, "database");
+      remove(ref(db, "database/" + dataId));
+      ToastifySuccess("Blog was deleted succesfully");
+      navigate("/");
+    } catch (error) {
+      ToastifyError("Something went wrong!!!");
+    }
 };
 
 

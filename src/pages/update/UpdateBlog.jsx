@@ -8,6 +8,8 @@ import { addUser } from "../../helpers/fireDatabase";
 import { useNavigate, useParams } from "react-router-dom";
 import { CallUser, EditBlog } from "../../helpers/fireDatabase";
 import { async } from "@firebase/util";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import "./Update.scss";
 
 const UpdateBlog = () => {
   const navigate = useNavigate();
@@ -60,9 +62,17 @@ const UpdateBlog = () => {
   }
 
   return (
-    <main className="newBlog-main">
+    <main className="update-main">
+        <div className="update-back-container">
+        <ArrowBackOutlinedIcon
+          className="update-back-icon"
+          onClick={() => navigate("/")}
+        />
+        <span onClick={() => navigate("/")}>Back</span>
+      </div>
+
       <Box
-        className="newBlog-form"
+        className="update-form"
         component="form"
         sx={{
           "& > :not(style)": { m: 1, width: "25ch" },
@@ -70,12 +80,12 @@ const UpdateBlog = () => {
         noValidate
         autoComplete="off"
       >
-        <div className="title-div">
+        <div className="update-title-div">
           <h2 >EDIT BLOG</h2>
         </div>
 
         <TextField
-          className="newBlog-input newBlog-title-input"
+          className="update-input update-title-input"
           id="outlined-basic"
           label="Title*"
           variant="outlined"
@@ -85,7 +95,7 @@ const UpdateBlog = () => {
         />
 
         <TextField
-          className="newBlog-input"
+          className="update-input"
           id="outlined-basic"
           label="Image URL*"
           variant="outlined"
@@ -94,7 +104,7 @@ const UpdateBlog = () => {
         />
 
         <TextField
-          className="newBlog-input"
+          className="update-input"
           id="outlined-textarea"
           label="Content*"
           placeholder="Content*"
@@ -104,8 +114,8 @@ const UpdateBlog = () => {
           onChange={(e) => setUpdateInfo({ ...updateInfo, content: e.target.value })}
         />
         
-          <Stack spacing={2} direction="row" className="new-button-container" >
-            <Button className="newBlog-submit" variant="contained" 
+          <Stack spacing={2} direction="row" className="update-new-button-container" >
+            <Button className="update-submit" variant="contained" 
             onClick={handleEdit}
             >
               EDIT YOUR BLOG

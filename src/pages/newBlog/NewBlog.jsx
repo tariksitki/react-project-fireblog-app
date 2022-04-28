@@ -6,8 +6,11 @@ import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import { addUser } from "../../helpers/fireDatabase";
 import "./NewBlog.scss";
+import { useNavigate } from "react-router-dom";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
 const NewBlog = () => {
+  const navigate = useNavigate();
   const [info, setInfo] = useState({
     title: "",
     url: "",
@@ -24,7 +27,8 @@ const NewBlog = () => {
 
   useEffect(() => {
     const date = new Date().toLocaleDateString();
-    setInfo({...info, userEmail : email, userName : displayName, date : date, userCountry : photoURL})
+    // setInfo({...info, userEmail : email, userName : displayName, date : date, userCountry : photoURL})
+    setInfo({...info, userEmail : email, userName : displayName, date : date, userCountry : ((currentUser && currentUser.providerData[0].providerId) === "password") ? photoURL : "unknown" })
   }, [currentUser]);
 
   const handleInfo = () => {
@@ -40,11 +44,20 @@ const NewBlog = () => {
         url : "",
         content : ""
        })
+       navigate("/");
     }
   };
 
   return (
     <main className="newBlog-main">
+      <div className="newBlog-back-container">
+        <ArrowBackOutlinedIcon
+          className="newBlog-back-icon"
+          onClick={() => navigate("/")}
+        />
+        <span onClick={() => navigate("/")}>Back</span>
+      </div>
+
       <Box
         className="newBlog-form"
         component="form"

@@ -44,9 +44,9 @@ const Register = () => {
     } else if ((registerState.firstName && registerState.lastName && registerState.email && registerState.password && registerState.country) && !currentUser) {
       signUp(registerState, displayName, navigate);
     }
-
-    console.log(currentUser);
   };
+
+  console.log(registerState);
 
   const handleRegisterGoogle = () => {
     if (currentUser) {
