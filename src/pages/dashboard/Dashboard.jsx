@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import BlogCard from "../../components/blogCard/BlogCard";
 import "./Dashboard.scss";
 import loadingGif from "../../assets/loading.gif";
+import Marquee from "../../components/marquee/Marquee";
 
 const Dashboard = () => {
   const [state] = useSelector((state) => state.blog);
@@ -22,6 +23,8 @@ const Dashboard = () => {
     // </div>
 
     <main className="dashboard-main">
+      <Marquee />
+
       <div className="container">
         <section className="main-up">
           <div className="logo-div">

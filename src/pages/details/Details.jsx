@@ -13,6 +13,7 @@ import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {deleteUser} from "../../helpers/fireDatabase";
+import { EditBlog } from "../../helpers/fireDatabase";
 
 const Details = () => {
   const navigate = useNavigate();
@@ -20,11 +21,12 @@ const Details = () => {
   const [state] = useSelector((state) => state.blog);
   const { currentUser } = useSelector((state) => state.auth);
 
-  const data = state?.filter((item) => {
+  const blog = state?.filter((item) => {
     return item.id === id;
   });
+  console.log(blog);
 
-  const emailFromBlog = data && data[0].userEmail;
+  const emailFromBlog = blog && blog[0].userEmail;
   const emailFromCurrentUser = currentUser?.email;
 
   const toCapitalize = (str) => {
@@ -38,15 +40,17 @@ const Details = () => {
 
   const handleBlogDelete = () => {
     if (window.confirm("Are You Sure to Delete This Blog?")) {
-      const dataId = data && data[0].id;
-      deleteUser(dataId, navigate);
+      const blogId = blog && blog[0].id;
+      deleteUser(blogId, navigate);
     }
   };
 
   const handleBlogEdit = () => {
-    const dataId = data && data[0].id;
-    navigate(`/updateBlog/${dataId}`);
+    const blogId = blog && blog[0].id;
+    navigate(`/updateBlog/${blogId}`);
   };
+
+  const handleLikes = useSelector(state => state.likes_func);
 
   return (
     <main className="details-main">
@@ -81,50 +85,54 @@ const Details = () => {
 
         <section className="details-main-down">
           <div className="image-div">
-            <img className="details-image" src={data && data[0].url} alt="" />
+            <img className="details-image" src={blog && blog[0].url} alt="" />
           </div>
 
           <div className="details-info-container">
             <div className="details-info-up">
               <div className="details-info-up-left">
-                <span>{data && data[0].userName[0].toUpperCase()} </span>
-                <p>{data && toCapitalize(data[0].userName)}</p>
+                <span>{blog && blog[0].userName[0].toUpperCase()} </span>
+                <p>{blog && toCapitalize(blog[0].userName)}</p>
               </div>
 
               <div className="details-info-up-right">
-                <p>{data && data[0].blogDate} </p>
+                <p>{blog && blog[0].blogDate} </p>
               </div>
             </div>
 
             <div className="details-info-title-div">
               <h2 className="details-info-title">
-                <p>{data && toCapitalize(data[0].title)}</p>{" "}
+                <p>{blog && toCapitalize(blog[0].title)}</p>{" "}
               </h2>
             </div>
 
             <div className="details-info-content-div">
-              <p className="details-info-content">{data && data[0].content}</p>
+              <p className="details-info-content">{blog && blog[0].content}</p>
             </div>
 
             <div className="author-info-div">
-              <span>Author : {data && toCapitalize(data[0].userName)} </span>
-              <span>E-Mail : {data && data[0].userEmail} </span>
-              <span>Country : {data &&  data[0].userCountry } </span>
-              {(data && data[0].updateDate) && (
+              <span>Author : {blog && toCapitalize(blog[0].userName)} </span>
+              <span>E-Mail : {blog && blog[0].userEmail} </span>
+              <span>Country : {blog &&  blog[0].userCountry } </span>
+              {(blog && blog[0].updateDate) && (
                 <span> 
-                  Last Edit : {data && data[0].updateDate} from {data && data[0].userName }
+                  Last Edit : {blog && blog[0].updateDate} from {blog && blog[0].userName }
                 </span>
               )  }
 
             </div>
 
             <div className="details-bottom-icons">
-              <div>
-                <div>
-                  <FavoriteBorderIcon className="details-info-icon" />
-                  {/* <FavoriteIcon /> */}
-                  <span> 2 </span>
-                </div>
+              <div className="details-bottom-icons-left">
+              <div className="likes-icon-div" >
+                {(blog &&  blog[0].likes?.includes(currentUser?.email)) ? (
+                  <FavoriteIcon className="details-like-icon" onClick = {() => handleLikes(currentUser, blog[0], EditBlog)} style = {{color : "#ff7e4a"}} />
+                  ) : (
+                    <FavoriteBorderIcon className="details-like-icon" onClick = {() => handleLikes(currentUser, blog[0] , EditBlog)}  />
+                ) }
+                <span> {(blog && blog[0].likes) ? blog[0].likes.length : 0 } </span>
+              </div>
+
 
                 <ChatBubbleOutlineIcon className="details-info-icon" />
                 {/* <ChatBubbleIcon /> */}

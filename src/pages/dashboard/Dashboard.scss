@@ -5,19 +5,21 @@
     background-color: $colorOne;
     width: 100vw;
     min-height: 90vh;
-    display: flex;
-    justify-content: center;
+    padding-bottom: 7rem;
+    // display: flex;
+    // justify-content: center;
     
     .container {
         border-radius: 1rem;
         width: 70%;
         background-color: white;
+        margin: auto;
         margin-top: 4rem;
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 10rem;
         padding-bottom: 5rem;
+        
 
         .main-up {
             border-bottom: 1px solid black;
@@ -53,6 +55,7 @@
             flex-direction: column;
             align-items: center;
             // margin-top: 3rem;
+            
         }
     }
     

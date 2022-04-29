@@ -154,6 +154,23 @@
                     justify-content: space-between;
                     align-items: center;
                     margin-top: 1rem;
+
+                    .details-bottom-icons-left {
+                        // background-color: red;
+                        display: flex;
+                        width: 30%;
+
+                        .likes-icon-div {
+                            display: flex;
+                            align-items: center;
+                        }
+                        .details-info-icon {
+                            margin-left: 1rem;
+                        }
+                        .details-like-icon {
+                            cursor: pointer;
+                        }
+                    }
                     
                     .details-bottom-buttons {
                         // background-color: aqua;
@@ -180,9 +197,7 @@
                         }
                     }
 
-                    .details-info-icon {
-                        margin-right: 1rem;
-                    }
+
                 }
             }
         }
