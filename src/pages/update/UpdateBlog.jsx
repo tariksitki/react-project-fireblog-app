@@ -89,7 +89,7 @@ const UpdateBlog = () => {
           id="outlined-basic"
           label="Title*"
           variant="outlined"
-          value={updateInfo.title}
+          value={updateInfo?.title}
           onChange={(e) => setUpdateInfo({ ...updateInfo, title: e.target.value })}
           autoFocus
         />
@@ -99,7 +99,7 @@ const UpdateBlog = () => {
           id="outlined-basic"
           label="Image URL*"
           variant="outlined"
-          value={updateInfo.url}
+          value={updateInfo?.url}
           onChange={(e) => setUpdateInfo({ ...updateInfo, url: e.target.value })}
         />
 
@@ -110,7 +110,7 @@ const UpdateBlog = () => {
           placeholder="Content*"
           multiline
           rows={7}
-          value={updateInfo.content}
+          value={updateInfo?.content}
           onChange={(e) => setUpdateInfo({ ...updateInfo, content: e.target.value })}
         />
         

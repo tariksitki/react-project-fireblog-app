@@ -18,7 +18,8 @@ const NewBlog = () => {
     userEmail : "",
     userName : "",
     date : "",
-    userCountry : ""
+    userCountry : "",
+    likes : []
   });
 
   const {currentUser} = useSelector(state => state.auth);

@@ -77,14 +77,21 @@
                 justify-content: space-between;
                 align-items: center;
                 margin-top: 0.4rem;
-                
+
                 .icons-div-inner {
                     display: flex;
                     justify-content: space-between;
                     width: 35%;
                     margin-top: 0.3rem;
+
+                    .likes-icon-div {
+                        display: flex;
+                        align-items: center;
+                    }
+
                     .info-icon {
                         font-size: 1.3rem;
+                        cursor: pointer;
                     }
                 }
 

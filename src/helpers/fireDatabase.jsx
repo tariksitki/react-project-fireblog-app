@@ -19,7 +19,7 @@ import ToastifyError from "./toastify/ToastError";
 
 /// Writing a new Data to Database:
 
-export const addUser = function ({title, url, content, userEmail, userName, date, userCountry}) {
+export const addUser = function ({title, url, content, userEmail, userName, date, userCountry, likes}) {
   const db = getDatabase();
   const userRef = ref(db, "database");
   const newUserRef = push(userRef);
@@ -30,7 +30,8 @@ export const addUser = function ({title, url, content, userEmail, userName, date
     blogDate : date,
     userEmail : userEmail,
     userName : userName,
-    userCountry : userCountry
+    userCountry : userCountry,
+    likes : likes
   });
 };
 

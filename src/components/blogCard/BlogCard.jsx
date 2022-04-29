@@ -119,15 +119,46 @@ import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlin
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import {EditBlog} from "../../helpers/fireDatabase";
+import ToastifyError from "../../helpers/toastify/ToastError";
 
 const BlogCard = ({ blog }) => {
+  const { blogDate, title, id, content, url, userName, userEmail, likes } = blog;
   const {currentUser} = useSelector(state => state.auth);
-  const { blogDate, title, id, content, url, userName, userEmail } = blog;
   const navigate = useNavigate();
-
+  
   const handleCard = () => {
       navigate(`/details/${id}`)
   };
+
+  const handleLikes = () => {
+    if (!currentUser) {
+      ToastifyError("Please Login to Like");
+
+    } else {
+      if (likes) {
+          if (blog.likes.includes(currentUser?.email)) {
+              EditBlog({
+                ...blog,
+                likes : likes?.filter(item => (item !== currentUser?.email))
+              })
+          } else {
+            blog.likes?.push(currentUser?.email);
+            EditBlog({
+              ...blog,
+              likes : blog?.likes
+            });
+          }
+
+      } else {
+        EditBlog({
+          ...blog,
+          likes : [currentUser?.email]
+        })
+      }
+    }
+  };
+
   return (
     <main className="card-main">
       <section className="image-container">
@@ -164,9 +195,13 @@ const BlogCard = ({ blog }) => {
 
           <div className="icons-div">
             <div className="icons-div-inner">
-              <div>
-                <FavoriteBorderIcon className="info-icon" />
-                {/* <FavoriteIcon /> */}
+              <div className="likes-icon-div" >
+                {blog.likes?.includes(currentUser?.email) ? (
+                  <FavoriteIcon className="info-icon" onClick = {handleLikes} style = {{color : "red"}} />
+                  ) : (
+                    <FavoriteBorderIcon className="info-icon" onClick = {handleLikes}  />
+                ) }
+                <span> {blog.likes ? blog.likes.length : 0 } </span>
               </div>
 
               <div>

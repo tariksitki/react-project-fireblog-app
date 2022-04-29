@@ -120,8 +120,12 @@ const Details = () => {
 
             <div className="details-bottom-icons">
               <div>
-                <FavoriteBorderIcon className="details-info-icon" />
-                {/* <FavoriteIcon /> */}
+                <div>
+                  <FavoriteBorderIcon className="details-info-icon" />
+                  {/* <FavoriteIcon /> */}
+                  <span> 2 </span>
+                </div>
+
                 <ChatBubbleOutlineIcon className="details-info-icon" />
                 {/* <ChatBubbleIcon /> */}
                 <VisibilityOutlinedIcon className="details-info-icon" />
