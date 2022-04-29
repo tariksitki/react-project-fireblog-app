@@ -19,6 +19,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { logOut } from "../../helpers/firebase";
 import "./Navbar.scss";
 import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
 // const Search = styled('div')(({ theme }) => ({
 //   position: 'relative',
@@ -63,6 +64,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Navbar() {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.auth);
+  // const [userName, setUserName] = useState("");
+
+  // useEffect(() => {
+  //   setUserName(currentUser?.displayName);
+  // }, [currentUser?.displayName]);
+
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -213,7 +221,7 @@ export default function Navbar() {
       </MenuItem>
     </Menu>
   );
-      
+  
   return (
     <Box sx={{ flexGrow: 1 }} className="navbar-box">
       <AppBar position="static">
@@ -256,7 +264,7 @@ export default function Navbar() {
           
           <div className="navbar-display-name" >
             <span>
-                {currentUser ? currentUser.displayName : ""}
+                {currentUser?.displayName}
             </span>
           </div>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>

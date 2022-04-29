@@ -23,13 +23,11 @@ const Login = () => {
   const handleLogin = () => {
     if (loginState.email && loginState.password && !currentUser) {
       signIn(loginState, navigate);
-      setLoginState({email : ""})
-      setLoginState({password : ""})
+      setLoginState({email : "", password : ""})
 
     } else if ((loginState.email && loginState.password) && (currentUser) ) {
       alert("You are already Log In. If you want to log in with another username, please log out first");
-      loginState.email = "";
-      loginState.password = "";
+      setLoginState({email : "", password : ""})
 
     }  else if (!(loginState.email && loginState.password)) {
       alert("Please fill in all fields");

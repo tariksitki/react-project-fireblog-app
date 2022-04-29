@@ -38,15 +38,15 @@ export const signUp = async ({email, password, country}, displayName, navigate) 
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password, country);
     ToastifySuccess("You have registered succesfully");
-    navigate("/");
-
+ 
     await updateProfile(auth.currentUser, {
       displayName: displayName,
       photoURL : country
       // update isleminde phoneNumber calismiyor.
     });
-
     // try icinde islem basarili ise navigate kullanacagiz navigate props gelecek
+    navigate("/");
+    // eger navigate i son satira koymazsak kullanici adi ikinci tiklamada cikiyor.
   } catch (error) {
     ToastifyError("Opppps Something went wrong");
   }
@@ -85,16 +85,18 @@ export const logOut = async (navigate) => {
 
 
 /////////////  user Observer:
+// bu func i app js de calistiracagiz.
 
-export const userObserver = (setCurrentUser) => {
-  onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setCurrentUser(currentUser)
-      } else {
-          setCurrentUser(false)
-      }
-    });
-};
+// export const userObserver = (setCurrentUser) => {
+//   onAuthStateChanged(auth, (currentUser) => {
+//       if (currentUser) {
+//         setCurrentUser(currentUser)
+//       } 
+//       else {
+//           setCurrentUser(false)
+//       }
+//     });
+// };
 
 
 

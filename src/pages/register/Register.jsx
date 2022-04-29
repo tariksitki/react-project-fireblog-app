@@ -6,8 +6,8 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import "./Register.scss";
 import { signUp } from "../../helpers/firebase";
-import { useState } from "react";
-import { signUpProvider, signIn } from "../../helpers/firebase";
+import { useEffect, useState } from "react";
+import { signUpProvider } from "../../helpers/firebase";
 import googleIcon from "../../assets/Google_Icon.webp";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -23,11 +23,11 @@ const Register = () => {
     password : "",
     country : ""
   });
-
   const displayName = `${registerState.firstName} ${registerState.lastName}`;
 
   const handleRegister = (e) => {
     e.preventDefault();
+
     if (currentUser) {
       alert("You are already Log In. If you want to log in with another username, please log out first");
       setRegisterState({
@@ -46,8 +46,6 @@ const Register = () => {
     }
   };
 
-  console.log(registerState);
-
   const handleRegisterGoogle = () => {
     if (currentUser) {
         alert("You are already Log In. If you want to log in with another username, please log out first");
@@ -56,6 +54,7 @@ const Register = () => {
         signUpProvider(navigate);
     }
   }
+
 
   return (
     <main className="register-main">
