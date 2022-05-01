@@ -7,7 +7,7 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {EditBlog} from "../../helpers/fireDatabase";
 import ToastifyError from "../../helpers/toastify/ToastError";
@@ -99,7 +99,7 @@ const BlogCard = ({ blog }) => {
               </div>
 
               <div>
-                <ChatBubbleOutlineIcon className="info-icon" />
+                    <ChatBubbleOutlineIcon className="info-icon" onClick = {handleCard} />
                 {/* <ChatBubbleIcon /> */}
               </div>
 
