@@ -36,7 +36,7 @@ const Details = () => {
 
   const emailFromBlog = blog && blog[0].userEmail;
   const emailFromCurrentUser = currentUser?.email;
-  const date = new Date().toLocaleDateString();
+
 
   // const [updateInfo, setUpdateInfo] = useState(blog ? blog : blog);
 
@@ -70,11 +70,17 @@ const Details = () => {
   const handleLikes = useSelector((state) => state.likes_func);
 
   const handleComment = () => {
-    if (!(comment && rating)) {
+    const date = new Date().toLocaleDateString();
+    if (!currentUser) {
+        ToastifyError("Please Log in to Rating and to Write a Comment!");
+        setComment("");
+        setRating(0);
+    } else if (!(comment && rating)) {
       ToastifyError("Please Enter a Comment and a Rating !!!");
       setComment("");
       setRating(0);
     } else if (comment && rating) {
+        // eger database deki veride kullanicinin hic userComment i yoksa
       if (!blog[0].userComments) {
         const updateInfo = {
           ...blog[0],
@@ -99,8 +105,6 @@ const Details = () => {
       }
     }
   };
-
-  console.log(blog && blog[0].userComments);
 
   return (
     <main className="details-main">
@@ -301,7 +305,7 @@ const Details = () => {
                   <section className="details-user-comments-right">
                     <div className="details-user-comments-rightUp">
                       <span style={{color : "rgb(55, 55, 55)"}} >{currentUser?.email}</span>
-                      <span className="details-comment-date" >{date} </span>
+                      <span className="details-comment-date" >{comment.date} </span>
                     </div>
 
                     <div className="details-user-comments-rightMiddle">

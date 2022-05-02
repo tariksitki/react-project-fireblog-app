@@ -83,15 +83,21 @@
                     justify-content: space-between;
                     width: 35%;
                     margin-top: 0.3rem;
+                    
+                    
 
                     .likes-icon-div {
                         display: flex;
                         align-items: center;
                     }
 
-                    .info-icon {
-                        font-size: 1.3rem;
-                        cursor: pointer;
+                    div {
+                        display: flex;
+                        align-items: center;
+                        .info-icon {
+                            font-size: 1.3rem;
+                            cursor: pointer;
+                        }
                     }
                 }
 
