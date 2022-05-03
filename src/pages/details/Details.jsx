@@ -304,8 +304,8 @@ const Details = () => {
 
                   <section className="details-user-comments-right">
                     <div className="details-user-comments-rightUp">
-                      <span style={{color : "rgb(55, 55, 55)"}} >{currentUser?.email}</span>
-                      <span className="details-comment-date" >{comment.date} </span>
+                      <span style={{color : "rgb(55, 55, 55)"}} >{comment?.email}</span>
+                      <span className="details-comment-date" >{comment?.date} </span>
                     </div>
 
                     <div className="details-user-comments-rightMiddle">

@@ -1,6 +1,7 @@
 
 import { call_likes_func } from "../types/LikesTypes";
 import ToastifyError from "../../helpers/toastify/ToastError";
+import ToastifySuccess from "../../helpers/toastify/ToastSuccess";
 
 const handleLikes = (currentUser, blog, EditBlog) => {
     if (!currentUser) {

@@ -37,8 +37,7 @@ export const auth = getAuth();
 export const signUp = async ({email, password, country}, displayName, navigate) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password, country);
-    ToastifySuccess("You have registered succesfully");
- 
+    
     await updateProfile(auth.currentUser, {
       displayName: displayName,
       photoURL : country
@@ -47,8 +46,9 @@ export const signUp = async ({email, password, country}, displayName, navigate) 
     // try icinde islem basarili ise navigate kullanacagiz navigate props gelecek
     navigate("/");
     // eger navigate i son satira koymazsak kullanici adi ikinci tiklamada cikiyor.
+    ToastifySuccess("You have registered succesfully");
   } catch (error) {
-    ToastifyError("Opppps Something went wrong");
+    ToastifyError(error);
   }
 };
 
@@ -62,7 +62,7 @@ export const signIn = async ({email, password}, navigate) => {
     ToastifySuccess("You have successfully logged in")
     navigate("/");
   } catch (error) {
-    ToastifyError("Ooopss something went wrong")
+    ToastifyError(error)
   }
 };
 
@@ -74,10 +74,11 @@ export const signIn = async ({email, password}, navigate) => {
 export const logOut = async (navigate) => {
   try {
     signOut(auth);
-    alert("Logout Succesfully");
-    navigate("/")
+    navigate("/");
+    ToastifySuccess("Successfully Logged Out");
   } catch (error) {
     alert(error);
+    ToastifyError(error);
   }
 };
 
@@ -110,9 +111,9 @@ export const signUpProvider = (navigate) => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
   .then((result) => {
-    // console.log(result);
     navigate("/");
+    ToastifySuccess("Login Succesfully");
   }).catch((error) => {
-    console.log(error);
+    ToastifyError(error);
   });
 };

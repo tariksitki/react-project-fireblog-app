@@ -10,6 +10,7 @@ import { CallUser, EditBlog } from "../../helpers/fireDatabase";
 import { async } from "@firebase/util";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import "./Update.scss";
+import ToastifySuccess from "../../helpers/toastify/ToastSuccess";
 
 const UpdateBlog = () => {
   const navigate = useNavigate();
@@ -56,8 +57,9 @@ const UpdateBlog = () => {
 
   const handleEdit = () => {
     if (window.confirm("Are You Sure to Edit This Blog?")) {
-      EditBlog(updateInfo)
+      EditBlog(updateInfo);
       navigate(-1);
+      ToastifySuccess("Blog was succesfully edited")
     }
   }
 

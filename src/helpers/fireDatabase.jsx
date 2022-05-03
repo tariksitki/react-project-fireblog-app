@@ -20,19 +20,24 @@ import ToastifyError from "./toastify/ToastError";
 /// Writing a new Data to Database:
 
 export const addUser = function ({title, url, content, userEmail, userName, date, userCountry, likes}) {
-  const db = getDatabase();
-  const userRef = ref(db, "database");
-  const newUserRef = push(userRef);
-  set(newUserRef, {
-    title: title,
-    url: url,
-    content: content,
-    blogDate : date,
-    userEmail : userEmail,
-    userName : userName,
-    userCountry : userCountry,
-    likes : likes
-  });
+    try {
+      const db = getDatabase();
+      const userRef = ref(db, "database");
+      const newUserRef = push(userRef);
+      set(newUserRef, {
+        title: title,
+        url: url,
+        content: content,
+        blogDate : date,
+        userEmail : userEmail,
+        userName : userName,
+        userCountry : userCountry,
+        likes : likes
+      });
+      ToastifySuccess("Blog was succesfully added");
+    } catch (error) {
+      ToastifyError(error)
+    } 
 };
 
 
@@ -78,10 +83,10 @@ export const deleteUser = (dataId, navigate) => {
       const db = getDatabase();
       const userRef = ref(db, "database");
       remove(ref(db, "database/" + dataId));
-      ToastifySuccess("Blog was deleted succesfully");
       navigate("/");
+      ToastifySuccess("Blog was deleted succesfully");
     } catch (error) {
-      ToastifyError("Something went wrong!!!");
+      ToastifyError(error);
     }
 };
 
@@ -93,11 +98,14 @@ export const deleteUser = (dataId, navigate) => {
 ////// Edit Blog:
 
 export const EditBlog = (updateInfo) => {
-  const db = getDatabase();
-  const updates = {};
-  updates["database/" + updateInfo.id] = updateInfo;
-  // bizim database imiz icine gir, edit tusuna tiklanan kisinin id numarasini al ve bunun bilgilerini güncelle demek
-
-  return update(ref(db), updates);
+    try {
+      const db = getDatabase();
+      const updates = {};
+      updates["database/" + updateInfo.id] = updateInfo;
+      // bizim database imiz icine gir, edit tusuna tiklanan kisinin id numarasini al ve bunun bilgilerini güncelle demek
+      return update(ref(db), updates);
+    } catch (error) {
+      ToastifyError(error);
+    }
 };
 
