@@ -20,10 +20,15 @@ const firebaseConfig = {
   apiKey: "AIzaSyDzAYm6zzkdm9mOYCunOZtpcWxVcnKnW4s",
   authDomain: "react-fireblog-app-dee2b.firebaseapp.com",
   databaseURL: "https://react-fireblog-app-dee2b-default-rtdb.firebaseio.com",
+  // databaseURL: process.env.REACT_APP_FIREBASE_dataBaseURL,
   projectId: "react-fireblog-app-dee2b",
+  // projectId: process.env.REACT_APP_FIREBASE_projectId,
   storageBucket: "react-fireblog-app-dee2b.appspot.com",
+  // storageBucket: process.env.REACT_APP_FIREBASE_storageBucket,
   messagingSenderId: "35153343853",
+  // messagingSenderId: process.env.REACT_APP_FIREBASE_messagingSenderId,
   appId: "1:35153343853:web:b15ece2a032ea2de94d664"
+  // appId: process.env.REACT_APP_FIREBASE_appId
 };
 
 // Initialize Firebase
